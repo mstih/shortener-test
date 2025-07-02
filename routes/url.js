@@ -8,13 +8,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/shorten', async (req, res) => {
-    const {originalUrl} = req.body;
+    const {originalURL} = req.body;
     const shortID = nanoid(6);
 
-    const exists = await Url.findOne({originalUrl});
+    const exists = await Url.findOne({originalURL});
     if (exists) return res.render('index', {shortUrl: process.env.BASE_URL + '/' + exists.shortID});
 
-    const newUrl = new Url({originalUrl, shortID});
+    const newUrl = new Url({originalURL, shortID});
     await newUrl.save();
 
     res.render('index', {shortUrl: process.env.BASE_URL + '/' + shortID});
