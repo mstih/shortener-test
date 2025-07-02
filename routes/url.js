@@ -4,7 +4,7 @@ const Url = require('../models/Url');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render(index, {shortUrl: null});
+    res.render('index', {shortUrl: null});
 });
 
 router.post('/shorten', async (req, res) => {
